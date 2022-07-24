@@ -1,12 +1,17 @@
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm, UserCreationForm
+from .forms import CustomUserCreationForm, UserCreationForm, VehiculoForm
 from django.contrib.auth import authenticate, login 
 from django.contrib import messages
-
+from .models import Vehiculo
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
+    vehiculo = Vehiculo.objects.all()
+    datos = {
+            'Vehiculo':vehiculo
+    }
+    return render (request,'home.html',datos)
+
 
 def registro(request):
     data = {
@@ -23,3 +28,16 @@ def registro(request):
             return redirect(to='home')
         data['form'] = formulario
     return render(request, 'registration/registro.html', data)
+
+
+
+def form(request):
+    datos ={
+        'form': VehiculoForm()
+    }
+    if request.method == 'POST':
+        formulario  = VehiculoForm(request.POST)
+        if formulario.is_valid:
+            formulario.save()
+
+    return render (request, 'form_create.html',datos)
