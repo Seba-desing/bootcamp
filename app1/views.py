@@ -1,12 +1,19 @@
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm, UserCreationForm
+from .forms import CustomUserCreationForm, UserCreationForm, VehiculoForm
 from django.contrib.auth import authenticate, login 
 from django.contrib import messages
-
+from .models import Vehiculo
 # Create your views here.
 
+
+
 def home(request):
-    return render(request, 'home.html')
+    vehiculo = Vehiculo.objects.all()
+    datos = {
+            'Vehiculo':vehiculo
+    }
+    return render (request,'listado_vehiculos.html',datos)
+
 
 def registro(request):
     data = {
@@ -23,3 +30,38 @@ def registro(request):
             return redirect(to='home')
         data['form'] = formulario
     return render(request, 'registration/registro.html', data)
+
+
+
+def form(request):
+    datos ={
+        'form': VehiculoForm()
+    }
+    if request.method == 'POST':
+        formulario  = VehiculoForm(request.POST)
+        if formulario.is_valid:
+            formulario.save()
+
+    return render (request, 'form_create.html',datos)
+
+
+def form_update_vehiculo(request,id):
+    vehiculo = Vehiculo.objects.get(patente = id)
+    datos = {
+        'form':VehiculoForm(instance = vehiculo)
+    }
+    if request.method == 'POST':
+        formulario = VehiculoForm(request.POST, instance = vehiculo )
+        if formulario.is_valid():
+            formulario.save()
+            datos['mensaje']= "Modificado correctamente"
+            datos['form'] = formulario
+
+    return render (request,'form_update.html',datos)
+
+
+
+def form_delete_vehiculo(request,id):
+    vehiculo = Vehiculo.objects.get(patente = id)
+    vehiculo.delete()
+    return redirect(to="home") 

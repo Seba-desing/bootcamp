@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block contenido%}
+
+<h2 class="d-flex justify-content-center">Listado de vehiculos</h2>
+<div class="container">
+    <form action="" method="POST" id="formulario">
+        {% csrf_token %}
+        <div class="input-group col-12 justify-content-center">
+          <div class="form"> {{form.as_table}}
+            <button type="submit" class="btn btn-primary my-5">Guardar</button>
+          </div>
+        </div>
+    </form>
+    <a href="{% url 'home' %}" class="v-btn fs-4"> < Volver a home </a>
+</div>
+{% endblock %}
