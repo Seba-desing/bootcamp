@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{%  static 'css/formulario.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
+    <div class="container mb-5">
         <div class="row">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
@@ -45,40 +46,14 @@
                   </div>
                 </div>
               </nav>
-            <h1>HOME</h1>
+            <h1 >Bienvenid@</h1>
         </div>
-    </div>
-    <h2 class="d-flex justify-content-center py-5">Listado de vehiculos</h2>
-    <div class="container">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Categoria</th>
-                <th scope="col">Patente</th>
-                <th scope="col">Marca</th>
-                <th scope="col">Modelo</th>
-                <th scope="col">Actualizar</th>
-                <th scope="col">Eliminar</th>
-                <th scope="col">Registrar</th>
-              </tr>
-            </thead>
-            <tbody>
-             {% for i in Vehiculo %}
-             <tr>
-                 <td>{{i.Categoria}}</td>
-                 <td>{{i.patente}}</td>
-                 <td>{{i.marca}}</td>
-                 <td>{{i.modelo}}</td>
-                 <td><a href=""><button class="btn btn-warning">UPDATE</button></a></td>
-                 <td><a href=""><button class="btn btn-danger">DELETE</button></a></td>
-                 <td><a href="form"><button class="btn btn-success">Registrar</button></a></td>
+        {% block contenido%}
+        
+        {% endblock %}
 
-             </tr>
-             {% endfor %}
-            </tbody>
-          </table>
-         
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     
 </body>
 </html>

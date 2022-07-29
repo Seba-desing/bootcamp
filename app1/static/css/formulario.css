@@ -1,9 +1,4 @@
-body{
-    min-height: 713px;
-    background: rgb(255, 255, 255);
-    background: linear-gradient(135deg, rgb(255, 253, 253) 23%, rgb(160, 205, 248) 100%); 
-    width: 100%;
-}
+
 .form{
     display: grid!important;
 }
@@ -24,4 +19,9 @@ select {
     position: relative;
     z-index: 2;
     border-radius: 24px;
+}
+.v-btn{
+    text-decoration: none;
+    text-decoration: unset;
+    color: #000;
 }

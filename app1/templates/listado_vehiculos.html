@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block contenido%}
+<h2 class="d-flex justify-content-center">Listado de vehiculos</h2>
+<div class="container">
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Categoria</th>
+          <th scope="col">Patente</th>
+          <th scope="col">Marca</th>
+          <th scope="col">Modelo</th>
+          <th scope="col">Actualizar</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+       {% for i in Vehiculo %}
+       <tr>
+           <td>{{i.Categoria}}</td>
+           <td>{{i.patente}}</td>
+           <td>{{i.marca}}</td>
+           <td>{{i.modelo}}</td>
+           <td><a href="{% url 'form_update_vehiculo' i.patente %}"><button class="btn btn-warning">UPDATE</button></a></td>
+           <td><a href="{% url 'form_delete_vehiculo' i.patente %}"><button class="btn btn-danger">DELETE</button></a></td>
+       </tr>
+       {% endfor %}
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-center ">
+      <a href="form"><button class="btn btn-success  mt-5 ">Registrar un nuevo vehiculo</button></a>
+    </div>
+</div>
+
+{% endblock %}
